@@ -20,4 +20,5 @@ public class CoachEntity {
     private Integer age;
     @Column(name = "category", nullable = false)
     private String category;
+
 }
