@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name="group_playing_practice")
 
-public class GroupPlayingPractice {
+public class GroupPlayingPracticeEntity {
 
     @Column (name = "title", nullable = false)
     private String title;

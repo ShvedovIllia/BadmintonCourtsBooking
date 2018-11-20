@@ -25,14 +25,16 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<UserDTO> getAllUsers() {
-        return null;
+        return modelMapper.mapAll(userRepository.findAll(), UserDTO.class);
     }
 
     public UserDTO getUserById(Long id) {
-        return null;
+
+        return modelMapper.map(userRepository.findById(id), UserDTO.class);
     }
 
     public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
 
     }
 }
