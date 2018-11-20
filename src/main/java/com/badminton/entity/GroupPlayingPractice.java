@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 
 public class GroupPlayingPractice {
 
-    @Column (name = "tit;e", nullable = false)
+    @Column (name = "title", nullable = false)
     private String title;
     @Column(name = "price", nullable = false, columnDefinition = "DECIMAL(5,2)")
     private BigDecimal price;
