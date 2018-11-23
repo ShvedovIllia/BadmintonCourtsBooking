@@ -35,4 +35,17 @@ public class CoachController {
         return new ResponseEntity<List<CoachDTO>>(HttpStatus.OK);
     }
 
+    @PutMapping("/updateCoach")
+    public ResponseEntity<Void> updateCoach(@PathVariable Long id, @RequestBody CoachDTO coachDTO){
+        coachDTO.setId(id);
+        coachService.addCoach(coachDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/daleteCoach/{id}")
+    public ResponseEntity<Void> deleteCoach(@PathVariable Long id){
+        coachService.deleteCoachById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
