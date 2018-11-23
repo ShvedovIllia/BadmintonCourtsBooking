@@ -1,12 +1,38 @@
 package com.badminton.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.badminton.domain.CoachDTO;
+import com.badminton.service.CoachService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/coaches")
 
 public class CoachController {
 
+    @Autowired
+    private CoachService coachService;
+
+    @PostMapping("/addCoach")
+    public ResponseEntity<Void> addCoach(@RequestBody CoachDTO coachDTO){
+        coachService.addCoach(coachDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/getCoachById/{id}")
+    public ResponseEntity<CoachDTO> getCoachById(@PathVariable Long id){
+        coachService.getOoachById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllCoaches")
+    public ResponseEntity<List<CoachDTO>> getAllCoaches(){
+        coachService.getAllCoaches();
+        return new ResponseEntity<List<CoachDTO>>(HttpStatus.OK);
+    }
 
 }

@@ -28,20 +28,20 @@ public class UserController {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/getUserById/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id){
         userService.getUserById(id);
         return new ResponseEntity<UserDTO>(HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping("/updateUser/{id}")
     public ResponseEntity<Void> updateUser(@RequestBody UserDTO userDTO, @PathVariable Long id){
         userDTO.setId(id);
         userService.addUser(userDTO);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/deleteUser")
+    @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
         userService.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
