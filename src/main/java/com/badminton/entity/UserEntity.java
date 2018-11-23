@@ -23,7 +23,7 @@ public class UserEntity extends IdEntity {
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @Column(name = "user_name", nullable = false, unique = true)
-    private String userName;
+    private String username;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "date_of_birth", nullable = false)
