@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "coach")
 
-public class CoachEntity {
+public class CoachEntity extends IdEntity {
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
