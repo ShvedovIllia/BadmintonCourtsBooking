@@ -1,6 +1,5 @@
 package com.badminton.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -34,11 +33,12 @@ public class WebSecurityImpl extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         final JWTAuthenticationFilter filter = new JWTAuthenticationFilter(authenticationManager());
-        filter.setFilterProcessesUrl(SevurityConstants.LOGIN_URL);
+        filter.setFilterProcessesUrl(SecurityConstants.LOGIN_URL);
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/users/allUsers").authenticated()
-                .antMatchers(HttpMethod.POST, SevurityConstants.SIGN_UP_URL).permitAll()
-                .antMatchers(HttpMethod.POST, SevurityConstants.LOGIN_URL).permitAll()
+                .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.POST, SecurityConstants.LOGIN_URL).permitAll()
+    //admin request .antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(filter)

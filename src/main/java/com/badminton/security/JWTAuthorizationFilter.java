@@ -32,9 +32,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest req,
                                     HttpServletResponse res,
                                     FilterChain chain) throws IOException, ServletException {
-        String header = req.getHeader(SevurityConstants.HEADER);
+        String header = req.getHeader(SecurityConstants.HEADER);
 
-        if (header == null || !header.startsWith(SevurityConstants.TOKEN_PREFIX)) {
+        if (header == null || !header.startsWith(SecurityConstants.TOKEN_PREFIX)) {
             chain.doFilter(req, res);
             res.setStatus(HttpStatus.UNAUTHORIZED.value());
             return;
@@ -52,14 +52,14 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
      * If everything is in place, we set the user in the SecurityContext and allow the request to move on.*/
 
     private CustomAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(SevurityConstants.HEADER);
+        String token = request.getHeader(SecurityConstants.HEADER);
         if (token != null) {
 
             ObjectMapper mapper = objectMapper();
             // parse the token.
             Jws<Claims> claims = Jwts.parser()
-                    .setSigningKey(SevurityConstants.SECRET.getBytes())
-                    .parseClaimsJws(token.replace(SevurityConstants.TOKEN_PREFIX, ""));
+                    .setSigningKey(SecurityConstants.SECRET.getBytes())
+                    .parseClaimsJws(token.replace(SecurityConstants.TOKEN_PREFIX, ""));
 
             UserEntity user = mapper.convertValue(claims.getHeader().get("principal"), UserEntity.class);
 

@@ -1,6 +1,6 @@
 package com.badminton.security;
 
-public class SevurityConstants {
+public class SecurityConstants {
 
     static final String SECRET = "SECRET_KEY";
     static final String TOKEN_PREFIX = "BEARER";

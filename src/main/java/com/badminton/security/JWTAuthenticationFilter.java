@@ -59,12 +59,15 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult) throws IOException, ServletException {
         String token = Jwts.builder()
                 .setSubject(((UserEntity) authResult.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + SevurityConstants.EXPIRATION_TIME))
+                .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .setHeaderParam("principal", authResult.getPrincipal())
-                .signWith(SignatureAlgorithm.HS512, SevurityConstants.SECRET.getBytes())
+                .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET.getBytes())
                 .compact();
 
-        response.addHeader(SevurityConstants.HEADER, SevurityConstants.TOKEN_PREFIX + token);
+        response.addHeader(SecurityConstants.HEADER, SecurityConstants.TOKEN_PREFIX + token);
+
+        response.getWriter().write(token);
+
         //  response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + SecurityConstants.generateToken(((User)authResult.getPrincipal()).getUsername()));
 
     }
