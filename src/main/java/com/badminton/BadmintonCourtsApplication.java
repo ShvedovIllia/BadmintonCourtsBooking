@@ -16,7 +16,8 @@ public class BadmintonCourtsApplication {
 
     public static void main(String [] args){
         ConfigurableApplicationContext run = SpringApplication.run(BadmintonCourtsApplication.class, args);;
-        createAdmin();
+        BadmintonCourtsApplication badmintonCourtsApplication = new BadmintonCourtsApplication();
+        badmintonCourtsApplication.createAdmin();
     }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
@@ -26,7 +27,7 @@ public class BadmintonCourtsApplication {
     @Autowired
     private UserRepository userRepository;
 
-    public static void createAdmin(){
+    public void createAdmin(){
         UserEntity user = new UserEntity();
         user.setUsername("ADMIN");
         user.setPassword("ADMIN");
@@ -35,9 +36,7 @@ public class BadmintonCourtsApplication {
         user.setDateOfBirth("ADMIN");
         user.setFirstName("ADMIN");
         user.setLastName("ADMIN");
-        if (userRepository.count()==0) {
-            userRepository.save(user);
-        }
+        if (userRepository.count() == 0) userRepository.save(user);
     }
 
 
