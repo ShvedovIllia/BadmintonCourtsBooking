@@ -1,5 +1,6 @@
 package com.badminton.domain;
 
+import com.badminton.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +20,6 @@ public class UserDTO {
     private String password;
     private String dateOfBirth;
     private String email;
+    private Roles role;
 
 }

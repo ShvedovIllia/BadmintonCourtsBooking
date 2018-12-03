@@ -1,5 +1,6 @@
 package com.badminton.entity;
 
+import com.badminton.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,6 +16,7 @@ import java.util.Collection;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 
 @Entity
 @Table(name= "users")
@@ -34,6 +34,8 @@ public class UserEntity extends IdEntity implements UserDetails {
     private String dateOfBirth;
     @Column (name = "email", nullable = false, unique = true)
     private String email;
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
